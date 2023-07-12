@@ -1,10 +1,28 @@
 <%- include('../partials/header') %>
 
+<h3>To-Dos as of <%= time %></h3>
     <ul>
       <% todos.forEach(function(t) { %>
         <li>
-            <a href="/todos/<%= t.id %>"><%= t.todo %></a>
+          <form action="/todos/<%= t.id %>?_method=DELETE"
+            class="delete-form" method="POST">
+            <button type="submit"><span class="material-symbols-outlined">
+              delete
+              </span></button>
+          </form>  
+          <a href="/todos/<%= t.id %>"><%= t.todo %></a>
+            - 
+            <%= t.done ? 'done' : 'not done' %>  
+        </li>    
       <% }); %>
+      <li class="newItem">
+        <a href="/todos/new">
+          <span class="material-symbols-outlined">
+          add_box
+          </span> 
+          Add To-Do
+        </a>
+    </li>
     </ul>
 </body>
 </html>
